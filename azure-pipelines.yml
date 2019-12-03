@@ -36,6 +36,13 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+- task: CmdLine@2
+  inputs:
+    script: 'curl -LJO https://github.com/whitesource/unified-agent-distribution/releases/latest/download/wss-unified-agent.jar'
+
+- task: CmdLine@2
+  inputs:
+    script: 'java -jar wss-unified-agent.jar -noConfig true -apiKey d50f65d169fb4180bdcac5835929e8feac9a913de41149439d2622808adf6845 -wss.url  https://saas.whitesourcesoftware.com/agent -product SmartHotel360  -project SmartHotel360'
 - task: VSTest@2
   inputs:
     platform: '$(buildPlatform)'
